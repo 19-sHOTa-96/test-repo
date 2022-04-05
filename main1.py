@@ -7,8 +7,8 @@ db = SQLAlchemy(app)
 
 class Users(db.Model):
 	uid = db.Column(db.Integer, primary_key=True)
-	f_name = db.Column(db.String(50), unique=True)
-	l_name = db.Column(db.String(50), unique=True)
+	f_name = db.Column(db.String(50))
+	l_name = db.Column(db.String(50))
 	age = db.Column(db.Float)
 
 #db.create_all()
