@@ -1,17 +1,19 @@
 from flask import Flask, request, render_template, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy
+import os
 
 app = Flask(__name__)
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///users.db"
+app.config["SECRET_KEY"] = "kals323m3n2v32323!sdpgk2"
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///users.db"#os.environ.get("DATABASE_URL")
 db = SQLAlchemy(app)
 
 class Users(db.Model):
 	uid = db.Column(db.Integer, primary_key=True)
-	f_name = db.Column(db.String(50))
-	l_name = db.Column(db.String(50))
+	f_name = db.Column(db.String(50), unique=False)
+	l_name = db.Column(db.String(50), unique=False)
 	age = db.Column(db.Float)
 
-#db.create_all()
+db.create_all()
 
 @app.route('/', methods=['GET'])
 def home() -> 'html':
